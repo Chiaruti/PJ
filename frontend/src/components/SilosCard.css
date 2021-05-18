@@ -1,0 +1,33 @@
+:root{
+    --bg-primary: rgba(255,255,255,0.4);
+    --bg-primary-dark: rgba(133, 133, 133, 0.4);
+    --text-color: rgb(255,255,255);
+    --default-margin: 3rem;
+    --default-padding: 2rem;
+}
+.silosCard{
+
+    background-color: var(--bg-primary);
+    width: 18rem;
+    height: 12rem;
+    margin:var(--default-margin);
+    border: 0.5rem inset var(--bg-primary);
+    transition-duration: 500ms ;
+}
+
+.silosCard:hover{
+    text-align: center;
+    cursor: pointer;
+    background-color: var(--bg-primary-dark);
+    width: 20rem;
+    height: 14rem;
+    margin: 2rem;
+    border: 0.5rem inset var(--bg-primary-dark);
+    color: var(--text-color);
+}
+
+.containerSilosCard{
+    width: 23rem;
+   
+}
+

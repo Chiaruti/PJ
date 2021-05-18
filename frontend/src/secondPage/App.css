@@ -1,0 +1,79 @@
+.container
+{
+  display: flex;
+}
+
+.row2
+{
+  flex-direction: row;
+  display: inline;
+}
+
+
+.border1
+{
+  border: 0.2rem solid #555;
+  display: flex;
+  flex-direction: row;
+  height: 15rem;
+  line-height: 1.3rem;
+  width: 5rem;
+  letter-spacing: 2.5rem;
+  word-break: break-all;
+}
+
+.col1
+{
+  margin-right: 5rem;
+  margin-left: -10rem;
+}
+
+.text
+{
+  margin: 0;  
+  margin-left: 2rem;
+  text-align: center;
+}
+
+.center
+{
+  line-height: 2rem;
+}
+
+.center1
+{
+  line-height: 1.6rem;
+}
+
+.border2
+{
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  height: fit-content;
+  text-align: center;
+ }
+
+.col2
+{ 
+  padding-left: 5rem;
+}
+
+.level
+{
+  height: 5rem;
+  border:  solid 2px rgb(4, 12, 11);
+}
+
+.col3
+{
+  margin-left: 6rem;
+}
+
+
+.button
+{
+  display: inline-flex;
+}
+
+
