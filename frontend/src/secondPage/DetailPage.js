@@ -52,7 +52,7 @@ function DetailPage() {
 
           {/* prima colonna - umidità */}
 
-          <div className="col1 ">
+          <div className="col1 col-sm">
 
             {popup.map((post, index) => (
 
@@ -66,7 +66,7 @@ function DetailPage() {
           {/* seconda colonna - livelli */}
 
           
-          <div className="col2">
+          <div className="col2 col-sm">
 
             <div className="border2">
               {/* //map = posso iterare su ogni post e stamparlo */}
@@ -84,22 +84,28 @@ function DetailPage() {
           {/* <ProgressBar animated now={45} /> */}
 
 
-          <div className="col3">
+          <div className="col3 col-sm">
 
             <div className="button">
 
-              <Button variant="contained" size="small" color="primary" onClick={() => setPeriod(<Daily />)}>
-                Giornata
+              <Button variant="contained" size="small" color="primary" onClick={() => setPeriod(<Weekly />)}>
+                Pressione
               </Button>
 
+              <Button variant="contained" size="small" color="primary" onClick={() => setPeriod(<Daily />)}>
+                Umidità  sopra
+              </Button>
 
               <Button variant="contained" size="small" color="primary" onClick={() => setPeriod(<Weekly />)}>
-                Settimana
+              Umidità  sotto
               </Button>
 
-
               <Button variant="contained" size="small" color="primary" onClick={() => setPeriod(<Daily />)}>
-                Storico
+                Temperatura  sopra
+              </Button>
+
+              <Button variant="contained" size="small" color="primary" onClick={() => setPeriod(<Weekly />)}>
+                Temperatura  sotto
               </Button>
 
 

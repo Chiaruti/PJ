@@ -1,32 +1,83 @@
-import React, { useState } from 'react';
-import { format } from 'date-fns';
-import { it } from 'date-fns/locale';
-import { DateRangePickerCalendar, START_DATE } from 'react-nice-dates';
-import 'react-nice-dates/build';
-//import '../App.css'
+import React from 'react';
+import Helmet from 'react-helmet';
+import DayPicker, { DateUtils } from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
 
+export default class Example extends React.Component {
+  static defaultProps = {
+    numberOfMonths: 2,
+  };
 
-export default function Weekly() {
-  const [startDate, setStartDate] = useState()
-  const [endDate, setEndDate] = useState()
-  const [focus, setFocus] = useState(START_DATE)
-  const handleFocusChange = newFocus => {
-    setFocus(newFocus || START_DATE)
+  constructor(props) {
+    super(props);
+    this.handleDayClick = this.handleDayClick.bind(this);
+    this.handleResetClick = this.handleResetClick.bind(this);
+    this.state = this.getInitialState();
   }
-  return (
-    <div>
-      <p>Seleziona data di inizio: {startDate ? format(startDate, 'dd MMM yyyy', { locale: it  }) : 'none'}.</p>
-      <p className="fine d-flex">Seleziona data di fine: {endDate ? format(endDate, 'dd MMM yyyy', { locale: it }) : 'none'}.</p>
- 
-      <DateRangePickerCalendar
-        startDate={startDate}
-        endDate={endDate}
-        focus={focus}
-        onStartDateChange={setStartDate}
-        onEndDateChange={setEndDate}
-        onFocusChange={handleFocusChange}
-        locale={it}
-      />
-    </div>
-  )
+
+  getInitialState() {
+    return {
+      from: undefined,
+      to: undefined,
+    };
+  }
+
+  handleDayClick(day) {
+    const range = DateUtils.addDayToRange(day, this.state);
+    this.setState(range);
+  }
+
+  handleResetClick() {
+    this.setState(this.getInitialState());
+  }
+
+  render() {
+    const { from, to } = this.state;
+    const modifiers = { start: from, end: to };
+    return (
+      <div className="RangeExample">
+       
+        <DayPicker
+          className="Selectable"
+          numberOfMonths={this.props.numberOfMonths}
+          selectedDays={[from, { from, to }]}
+          modifiers={modifiers}
+          onDayClick={this.handleDayClick}
+        />
+        <Helmet>
+          <style>{`
+  .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+    background-color: #f0f8ff !important;
+    color: #4a90e2;
+  }
+  .Selectable .DayPicker-Day {
+    border-radius: 0 !important;
+  }
+  .Selectable .DayPicker-Day--start {
+    border-top-left-radius: 50% !important;
+    border-bottom-left-radius: 50% !important;
+  }
+  .Selectable .DayPicker-Day--end {
+    border-top-right-radius: 50% !important;
+    border-bottom-right-radius: 50% !important;
+  }
+`}</style>
+        </Helmet>
+
+        <p>
+          {!from && !to && 'Please select the first day.'}
+          {from && !to && 'Please select the last day.'}
+          {from &&
+            to &&
+            `Selected from ${from.toLocaleDateString()} to
+                ${to.toLocaleDateString()}`}{' '}
+          {from && to && (
+            <button className="link" onClick={this.handleResetClick}>
+              Reset
+            </button>
+          )}
+        </p>
+      </div>
+    );
+  }
 }
